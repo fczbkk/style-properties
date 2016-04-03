@@ -1,6 +1,6 @@
 {
   "name": "style-properties",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript library for getting information about element style properties in unified and usable format.",
   "repository": {
     "type": "git",
