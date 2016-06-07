@@ -25,17 +25,30 @@ import parsePropertyValue from './parse-property-value'
 
 /**
  * Attempts to fix the element when using Webcomponents with ShadowDOMPolyfill. It returns either original element or wrapped element, depending on whether the polyfill replaced the original `getComputedStyle` method or not.
+ * This is madness and no sane person should ever do hacks like this. ShadowDOMPolyfill sucks donkey balls!
  * @param {Object|HTMLElement} element
  * @returns {Object|HTMLElement}
  */
 function fixWebcomponentsElement (element) {
   if (typeof window.ShadowDOMPolyfill !== 'undefined') {
+
     const is_native = document.defaultView.getComputedStyle
       .toString().indexOf('[native code]') !== -1;
-    element = is_native
-      ? window.ShadowDOMPolyfill.unwrap(element)
-      : window.ShadowDOMPolyfill.wrap(element);
+
+    // Can't check if element is instance of HTMLElement, because the polyfill
+    // hijacks this. Only reliable way of checking if it is wrapped I found
+    // is using this ugly ass property.
+    const is_wrapped = typeof element.__impl4cf1e782hg__ !== 'undefined';
+
+    if (is_native && is_wrapped) {
+      element = window.ShadowDOMPolyfill.unwrap(element);
+    }
+
+    if (!is_native && !is_wrapped) {
+      element = window.ShadowDOMPolyfill.wrap(element);
+    }
   }
+
   return element;
 }
 
