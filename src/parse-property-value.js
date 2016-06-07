@@ -52,9 +52,11 @@ function parseRegularProperty (value) {
 
 
 export default function (value) {
-  return re_color.test(value)
+  const result = re_color.test(value)
     ? parseColorProperty(value)
     : parseRegularProperty(value);
+  result.original = value;
+  return result;
 }
 
 

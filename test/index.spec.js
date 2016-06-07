@@ -25,7 +25,8 @@ describe('Style Properties', function () {
         width: {
           value: 100,
           unit: 'px',
-          output: '100px'
+          output: '100px',
+          original: '100px'
         }
       });
     });
@@ -37,12 +38,14 @@ describe('Style Properties', function () {
         width: {
           value: 100,
           unit: 'px',
-          output: '100px'
+          output: '100px',
+          original: '100px'
         },
         height: {
           value: 200,
           unit: 'px',
-          output: '200px'
+          output: '200px',
+          original: '200px'
         }
       });
     });
@@ -57,7 +60,8 @@ describe('Style Properties', function () {
       expect(getStyleProperty(elm, 'opacity')).toEqual({
         value: 0.5,
         unit: '',
-        output: '0.5'
+        output: '0.5',
+        original: '0.5'
       });
     });
 
@@ -66,7 +70,8 @@ describe('Style Properties', function () {
       expect(getStyleProperty(elm, 'fontSize')).toEqual({
         value: 10,
         unit: 'px',
-        output: '10px'
+        output: '10px',
+        original: '10px'
       });
     });
 
@@ -76,7 +81,8 @@ describe('Style Properties', function () {
       expect(getStyleProperty(elm, 'left')).toEqual({
         value: -100,
         unit: 'px',
-        output: '-100px'
+        output: '-100px',
+        original: '-100px'
       });
     });
 
@@ -85,7 +91,8 @@ describe('Style Properties', function () {
       expect(getStyleProperty(elm, 'width')).toEqual({
         value: 0,
         unit: 'px',
-        output: '0px'
+        output: '0px',
+        original: '0px'
       });
     });
 
@@ -93,7 +100,8 @@ describe('Style Properties', function () {
       expect(getStyleProperty(elm, 'left')).toEqual({
         value: null,
         unit: '',
-        output: 'auto'
+        output: 'auto',
+        original: 'auto'
       });
     });
 
@@ -102,7 +110,8 @@ describe('Style Properties', function () {
       expect(getStyleProperty(elm, 'color')).toEqual({
         value: [153, 153, 153],
         unit: 'rgb',
-        output: '#999999'
+        output: '#999999',
+        original: 'rgb(153, 153, 153)'
       });
     });
 
