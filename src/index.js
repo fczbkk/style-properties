@@ -24,6 +24,22 @@ import parsePropertyValue from './parse-property-value'
  */
 
 /**
+ * Attempts to fix the element when using Webcomponents with ShadowDOMPolyfill. It returns either original element or wrapped element, depending on whether the polyfill replaced the original `getComputedStyle` method or not.
+ * @param {Object|HTMLElement} element
+ * @returns {Object|HTMLElement}
+ */
+function fixWebcomponentsElement (element) {
+  if (typeof window.ShadowDOMPolyfill !== 'undefined') {
+    const is_native = document.defaultView.getComputedStyle
+      .toString().indexOf('[native code]') !== -1;
+    element = is_native
+      ? window.ShadowDOMPolyfill.unwrap(element)
+      : window.ShadowDOMPolyfill.wrap(element);
+  }
+  return element;
+}
+
+/**
  * Returns information about unit and value of given property for given element.
  * @param {HTMLElement} element
  * @param {string} property - Name of the property. You can use either camelCase (e.g. zIndex) or kebab-case (e.g. z-index).
@@ -35,6 +51,7 @@ import parsePropertyValue from './parse-property-value'
  */
 export function getStyleProperty (element, property) {
   property = toKebabCase(property);
+  element = fixWebcomponentsElement(element);
   const value = document.defaultView
     .getComputedStyle(element, null)
     .getPropertyValue(property);
