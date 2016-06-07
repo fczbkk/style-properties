@@ -24,6 +24,18 @@ import parsePropertyValue from './parse-property-value'
  */
 
 /**
+ * Fixes Webcomponents' broken way of wrapping elements, which causes problems with using `getComputedStyle` in Firefox.
+ * @param {Object|HTMLElement} element
+ * @returns {HTMLElement}
+ * @private
+ */
+function fixWebcomponentsWrappedElement (element) {
+  return (typeof ShadowDOMPolyfill === 'undefined')
+    ? element
+    : ShadowDOMPolyfill.unwrap(element);
+}
+
+/**
  * Returns information about unit and value of given property for given element.
  * @param {HTMLElement} element
  * @param {string} property - Name of the property. You can use either camelCase (e.g. zIndex) or kebab-case (e.g. z-index).
@@ -35,6 +47,7 @@ import parsePropertyValue from './parse-property-value'
  */
 export function getStyleProperty (element, property) {
   property = toKebabCase(property);
+  element = fixWebcomponentsWrappedElement(element);
   const value = document.defaultView
     .getComputedStyle(element, null)
     .getPropertyValue(property);
