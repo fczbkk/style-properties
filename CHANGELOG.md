@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/fczbkk/style-properties/compare/v1.1.1...v1.2.0) (2016-06-07)
+
+
+### Features
+
+* another attempt to fix the mess created by ShadowDOMPolyfill in Firefox ([334fa5c](https://github.com/fczbkk/style-properties/commit/334fa5c))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/fczbkk/style-properties/compare/v1.1.0...v1.1.1) (2016-06-07)
 
