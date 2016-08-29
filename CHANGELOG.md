@@ -1,3 +1,13 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/fczbkk/style-properties/compare/v1.3.0...v1.3.1) (2016-08-29)
+
+
+### Bug Fixes
+
+* fix publish workflow ([128bb7d](https://github.com/fczbkk/style-properties/commit/128bb7d))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/fczbkk/style-properties/compare/v1.2.1...v1.3.0) (2016-08-28)
 
